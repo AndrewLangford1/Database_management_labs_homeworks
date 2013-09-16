@@ -1,4 +1,5 @@
 --Andrew Langford --
+--September 15th, 2013 --
 --Queries Homework 1 --
 
 
@@ -36,7 +37,7 @@ or 		city = 'Newark';
 select 	*
 from	Products
 where 	priceusd <= 1.00
-and		(city <> 'Newark' and city <> 'New York');
+and     (city <> 'Newark' and city <> 'New York');
 
 --8. Lists all data for orders in January or March. --
 select	*
