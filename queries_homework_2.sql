@@ -23,3 +23,28 @@ from 	Customers
 where 	cid in	(select	cid
 		 from Orders
 		 where aid <> 'ao3');
+		 
+--Question 4 --
+--gets the cids and names of customers who ordered both product p01 and p07 --
+select	cid,name
+from	Customers
+where 	cid in	(select	cid
+		 from	Orders
+		 where	pid in (select	pid      
+		 		from   Orders
+		 		where 	pid = 'p01')
+		 and	pid in (select 	pid
+		 		from	Orders
+				where 	pid = 'p07')
+		);
+		
+-- Question 5 --
+--  get the pid of products by any customers who ever placed an order through agent a03 --
+select	pid
+from	products
+where	pid in (select	pid  
+		from 	Orders
+		where	cid in (select	cid  
+				from	Orders
+				where	aid = 'a03') 
+		);
