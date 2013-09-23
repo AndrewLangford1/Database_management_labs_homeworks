@@ -1,6 +1,6 @@
 -- Queries Homework 2 --
 --Andrew Langford --
-
+-- September 23rd, 2013 --
 --Question 1 -- 
 -- get the cities of agents booking an order for customer c002 -- 
 select	city     
@@ -11,10 +11,10 @@ where aid in	(select aid
 		 
 --Question 2 --
 --Get the pids of products ordered through any agent who makes at least one order for a customer in Kyoto --
-select	pid
-from	Products
-where
-
+--select	pid--
+--from	Products --
+-- from	Products -- 
+--I couldnt quite understand what this one was asking --
 
 --Question 3 --
 -- Finds cids and names of customers who never placed an order through agent a03 --
@@ -41,10 +41,41 @@ where 	cid in	(select	cid
 -- Question 5 --
 --  get the pid of products by any customers who ever placed an order through agent a03 --
 select	pid
-from	products
-where	pid in (select	pid  
-		from 	Orders
-		where	cid in (select	cid  
-				from	Orders
-				where	aid = 'a03') 
-		);
+from	Products
+where	pid in 
+	(select	pid   
+	 from	Orders   
+	 where	cid in
+	 	(select	cid
+	 	from	Orders
+	 	where	aid = 'a03'
+	 	)
+	 );
+	 
+-- Question 6 --
+-- Get the names and discounts of all customers who place orders through agents in Dallas or Duluth--
+select	name, discount
+from	Customers
+where	cid in 
+	(select cid
+	from Orders
+	where aid in
+		(select aid
+		 from Agents
+		 where	city = 'Dallas'
+		 or 	city = 'Duluth'
+		 )
+	);
+	
+-- Question 7 --
+--Find all customers who have the same discount as that of any customers in Dallas or Kyoto --
+select	*
+from	Customers
+where discount in
+	(select discount
+	from	Customers
+	where	city = 'Dallas'
+	or	city = 'Kyoto'
+	)
+and	(city <> 'Dallas'      
+	 and city <> 'Kyoto');
