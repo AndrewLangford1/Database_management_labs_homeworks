@@ -21,12 +21,10 @@ and o.cid = 'c002';
 --Question 3 --
 -- 3. Get the pids of products ordered through any agent who makes at least one order for a customer in Kyoto. Use subqueries. (Yes, this is also the same question as on homework #2.) --
 select pid
-from products
-where pid in (select pid
-			  from orders
-			  where aid in (select aid
-			  				from agents
-			  				where city = 'Kyoto'));
+from orders
+where cid in (select cid
+			from customers
+			where city = 'Kyoto')
 
 
 
@@ -63,6 +61,23 @@ where a.city = c.city;
 -- 8. Get the names of customers and agents in the same city, along with the name of the city, regardless of whether or not the customer has ever placed an order with that agent. --
 select a.name, c.name, a.city
 from agents a inner join customers c on a.city = c.city;
+
+-- Quesion 9 --
+-- 9. Get the name and city of customers who live in the city where the least number of products are made. --
+
+--Question 12 --
+-- 12. List the products whose priceUSD is above the average priceUSD. --
+select *
+from products
+where priceUSD >(select avg(priceUSD)
+					from products);
+
+-- Question 13 --
+--13. Show the customer name, pid ordered, and the dollars for all customer orders, sorted by dollars from high to low--
+select c.name, o.pid, o.dollars
+from customers c inner join orders o on c.cid = o.cid;
+
+
 
 
 
