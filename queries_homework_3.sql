@@ -75,7 +75,10 @@ where priceUSD >(select avg(priceUSD)
 -- Question 13 --
 --13. Show the customer name, pid ordered, and the dollars for all customer orders, sorted by dollars from high to low--
 select c.name, o.pid, o.dollars
-from customers c inner join orders o on c.cid = o.cid;
+from customers c inner join orders o on c.cid = o.cid
+order by dollars desc;
+
+
 
 
 
