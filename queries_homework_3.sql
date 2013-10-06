@@ -59,6 +59,11 @@ from orders o inner join customers c on o.cid = c.cid
 where a.city = c.city;
 
 
+-- Quesion 8 --
+-- 8. Get the names of customers and agents in the same city, along with the name of the city, regardless of whether or not the customer has ever placed an order with that agent. --
+select a.name, c.name, a.city
+from agents a inner join customers c on a.city = c.city;
+
 
 
 
