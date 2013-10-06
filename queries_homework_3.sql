@@ -78,7 +78,14 @@ select c.name, o.pid, o.dollars
 from customers c inner join orders o on c.cid = o.cid
 order by dollars desc;
 
-
+-- Question 14 --
+-- Show all customer names (in order) and their total ordered, and nothing more. Use coalesce to avoid showing NULLs.--
+select distinct c.name, sum(o.qty)
+from customers c
+full outer join orders o
+on c.cid = o.cid
+group by c.name
+order by c.name asc;
 
 
 
