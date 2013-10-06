@@ -51,6 +51,14 @@ where name not in (select name
  					right outer join orders
  					on customers.cid = orders.cid);
 
+--Question 7 --
+-- 7. Get the names of customers who placed at least one order through an agent in their city, along with those agent(s) names.--
+select distinct a.name,c.name
+from orders o inner join customers c on o.cid = c.cid
+	inner join agents a on o.aid = a.aid
+where a.city = c.city;
+
+
 
 
 
