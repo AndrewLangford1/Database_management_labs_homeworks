@@ -137,11 +137,19 @@ where c.cid = o.cid
 
 -- Question 16 --
 -- 16. Write a query to check the accuracy of the dollars column in the Orders table. This means calculating Orders.dollars from other data in other tables and then comparing those values to the values in Orders.dollars. --
-select ((p.priceusd * o.qty) + ((p.priceusd * o.qty)*(a.percent/100)) - (p.priceusd * o.qty*(c.discount/100))) as "Actual", o.dollars as "Charged"
+select ((p.priceusd * o.qty) - (p.priceusd * o.qty*(c.discount/100))) as "Actual", o.dollars as "Charged"
 from products p, orders o, agents a, customers c
 where p.pid = o.pid
 and a.aid = o.aid
 and c.cid = o.cid
+
+
+-- Question 17 --
+-- 17. Create an error in the dollars column of the Orders table so that you can verify your accuracy checking query. --
+update orders
+set dollars = 10.00
+where ordno = 1011
+
 
 
 
